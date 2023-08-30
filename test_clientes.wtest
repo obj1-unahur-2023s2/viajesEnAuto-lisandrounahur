@@ -1,0 +1,69 @@
+import clientes.*
+
+describe "Testing de Ana Maria" {
+	
+   test "Esta economicamente estable" {
+	 assert.that(anaMaria.estaEconomicamenteEstable())
+   }
+   
+   
+   test "No esta economicamente estable" {
+	anaMaria.cambiarEconomicamenteEstable()
+	assert.notThat(anaMaria.estaEconomicamenteEstable())
+   }
+   
+   test "Retorna el precio correcto cuando no esta estable" {
+     anaMaria.cambiarEconomicamenteEstable()
+   	 assert.equals(25,anaMaria.precioPorKilometro())
+   }
+   
+    test "Retorna el precio correcto cuando esta estable" {
+   	assert.equals(30,anaMaria.precioPorKilometro())
+   }
+   
+}
+
+describe "Testing de Teresa" {
+	
+	test "Precio inicial es 22" {
+		assert.equals(22,teresa.precioPorKilometro())
+	}
+	
+	test "Precio cambia" {
+		teresa.precioPorKilometro(25)
+		assert.equals(25, teresa.precioPorKilometro())
+	}
+	
+	
+}
+
+describe "Testing de Ludmila" {
+	
+	test "Precio por kilometro retorna 18" {
+		assert.equals(18,ludmila.precioPorKilometro())
+	}
+	
+}
+
+describe "Testing de Melina" {
+	
+	test "Si trabaja para teresa el precio es 19" {
+		melina.cliente(teresa)
+		assert.equals(19, melina.precioPorKilometro())
+	}
+	
+	test "Si trabaja para ludmila el precio es 15" {
+		melina.cliente(ludmila)
+		assert.equals(15, melina.precioPorKilometro())
+	}
+	
+	test "No puede trabajar para si misma" {
+		assert.throwsExceptionWithMessage("No puede trabajar para si misma", {melina.cliente(melina)})
+	}
+	
+	test "Puede trabajar para clientes validos" {
+		assert.doesNotThrowException({melina.cliente(ludmila)})
+	}
+}
+
+

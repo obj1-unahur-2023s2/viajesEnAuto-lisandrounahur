@@ -1,0 +1,105 @@
+import remiseras.*
+import clientes.*
+
+describe "Test de Remisera Roxana" {
+	
+	test "Le cobra a ludmila 180pesos por 10 km" {
+		assert.equals(180, roxana.precioViaje(ludmila,10))
+	}
+	
+	test "Le cobra a Ana Maria 300 pesos por 10 km" {
+		assert.equals(300, roxana.precioViaje(anaMaria,10))
+	}
+	
+	test "Le cobra a teresa 220 pesos por 10 km" {
+		assert.equals(220, roxana.precioViaje(teresa,10))
+	}
+	
+}
+
+
+describe "Test de Remisera Mariela" {
+	
+	
+	test "Le cobra a ludmila 180pesos por 10 km" {
+		assert.equals(180, mariela.precioViaje(ludmila,10))
+	}
+	
+	test "Le cobra a Ana Maria 300 pesos por 10 km" {
+		assert.equals(300, mariela.precioViaje(anaMaria,10))
+	}
+	
+	test "Le cobra a teresa 220 pesos por 10 km" {
+		assert.equals(220, mariela.precioViaje(teresa,10))
+	}
+	
+}
+
+describe "Test de Remisera Gabriela" {
+	
+	test "Le cobra a ludmila 216 pesos por 10 km" {
+		assert.equals(216, gabriela.precioViaje(ludmila,10))
+	}
+	
+	test "Le cobra a Ana Maria 360 pesos por 10 km" {
+		assert.equals(360, gabriela.precioViaje(anaMaria,10))
+	}
+	
+	test "Le cobra a teresa 264 pesos por 10 km" {
+		assert.equals(264, gabriela.precioViaje(teresa,10))
+	}
+	
+}
+
+
+describe "Test de Remisera Juana" {
+	
+	test "Le cobra a ludmila 200 pesos por 10 km" {
+		assert.equals(200, juana.precioViaje(ludmila,10))
+	}
+	
+	test "Le cobra a Ana Maria 200 pesos por 10 km" {
+		assert.equals(200, juana.precioViaje(anaMaria,10))
+	}
+	
+	test "Le cobra a teresa 200 pesos por 10 km" {
+		assert.equals(200, juana.precioViaje(teresa,10))
+	}
+	
+}
+
+describe "Test de Remisera Lucia" {
+	
+	test "No puede reemplazarse asi mismo" {
+		assert.throwsExceptionWithMessage("No puede reemplazarse a si misma", {lucia.remiseraSustituida(lucia)})
+	}
+
+	test "Si lucia  reemplaza a mariela le cobra a ludmila 180 pesos por 10 km" {
+		lucia.remiseraSustituida(mariela)
+		assert.equals(180, lucia.precioViaje(ludmila,10))
+	}
+	
+	test "Si lucia  reemplaza a Juana le cobra a Teresa 200 pesos por 10 km" {
+		lucia.remiseraSustituida(juana)
+		assert.equals(200, lucia.precioViaje(teresa,10))
+	}
+	
+	test "Si lucia  reemplaza a Gabriela le cobra a Melina(Ludmila) 180 pesos por 10km " {
+		lucia.remiseraSustituida(gabriela)
+		melina.cliente(ludmila)
+		assert.equals(180, lucia.precioViaje(melina,10))
+	}
+	
+	test "Lucia le cobra a melina que trabaja para ludmila le cobra 150 pesos por 10km" {
+		lucia.remiseraSustituida(mariela)
+		melina.cliente(ludmila)
+		assert.equals(150, lucia.precioViaje(melina,10)
+	}
+	
+		test "Lucia le cobra a melina que trabaja para ludmila le cobra 18 pesos por 1km" {
+		lucia.remiseraSustituida(gabriela)
+		melina.cliente(ludmila)
+		assert.equals(18, lucia.precioViaje(melina,1)
+	}
+	)
+}
